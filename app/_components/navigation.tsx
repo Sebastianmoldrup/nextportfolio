@@ -4,17 +4,21 @@ import { useState } from 'react';
 export default function Navigation() {
   const [active, setActive] = useState(false);
   const links = ['hjem', 'om', 'prosjekter', 'kontakt'];
-  console.log(active);
 
   return (
-    <nav className='flex justify-between text-xl py-6 px-10'>
+    <nav className='flex justify-between text-xl py-4 px-8 md:py-6 md:px-10 shadow-md'>
       {/* Name */}
-      <h3 className='font-bold'>Sebastian</h3>
+      <h3 className='font-bold hover:text-red-400'>
+        <a href='/'>{'<Sebastian />'}</a>
+      </h3>
 
       {/* Desktop menu list */}
-      <ul className='md:flex gap-x-4 font-semibold hidden'>
+      <ul className='md:flex gap-x-6 font-semibold hidden'>
         {links.map((link, index) => (
-          <li key={index} className='capitalize hover:cursor-pointer'>
+          <li
+            key={index}
+            className='capitalize hover:cursor-pointer hover:text-red-400 hover:scale-110'
+          >
             <a href={'#' + link}>{link}</a>
           </li>
         ))}
@@ -26,7 +30,7 @@ export default function Navigation() {
         width='1.5em'
         height='1.5em'
         viewBox='0 0 24 24'
-        className='hover:cursor-pointer'
+        className='hover:cursor-pointer md:hidden'
         onClick={() => setActive(true)}
       >
         <path
@@ -43,8 +47,8 @@ export default function Navigation() {
       <div
         className={
           active
-            ? 'absolute top-0 left-0 w-screen h-screen bg-white show'
-            : 'absolute top-0 left-0 w-screen h-screen hide'
+            ? 'z-[999] absolute top-0 left-0 w-screen h-screen bg-white show'
+            : 'z-[999] absolute top-0 left-0 w-screen h-screen hide'
         }
       >
         <div className='flex justify-center items-center w-full h-full py-6 px-10 gap-y-10'>
@@ -54,7 +58,7 @@ export default function Navigation() {
             width='1.5em'
             height='1.5em'
             viewBox='0 0 24 24'
-            className='absolute hover:cursor-pointer top-6 right-14'
+            className='absolute hover:cursor-pointer top-4 right-8'
             onClick={() => setActive(false)}
           >
             <path

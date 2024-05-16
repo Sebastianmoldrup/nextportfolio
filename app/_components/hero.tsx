@@ -1,58 +1,117 @@
-import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { GithubIcon, GmailIcon } from './icons';
 
 export default function Hero() {
-  const blobVariants = {
-    start: {
-      d: 'M458.5,287.5Q400,350,287.5,350Q175,350,175,287.5Q175,225,87.5,225Q0,225,0,150Q0,75,87.5,75Q175,75,175,0Q175,-75,287.5,-75Q400,-75,458.5,87.5Q517,250,458.5,287.5Z',
-    },
-    end: {
-      d: 'M59.3,-49.9C71.8,-31.7,73.3,-7.3,68,15.3C62.7,37.9,50.4,58.6,32.3,67.5C14.2,76.3,-9.8,73.3,-25.4,62.1C-40.9,51,-48,31.8,-53,11.7C-57.9,-8.5,-60.7,-29.5,-51.5,-47C-42.3,-64.5,-21.2,-78.5,1.1,-79.4C23.4,-80.3,46.9,-68.2,59.3,-49.9Z',
-    },
-  };
+  const experience = [
+    'js',
+    'ts',
+    'php',
+    'html',
+    'css',
+    'nextjs',
+    'astro',
+    'react',
+    'wordpress',
+    'supabase',
+    'vercel',
+    'tailwind',
+    'shadcnui',
+    'github',
+    'git',
+    'laravel',
+    'figma',
+  ];
+
+  const exploring = ['cs', 'dotnet', 'gcp', 'aws', 'azure'];
 
   return (
-    <section className='flex flex-col items-center justify-center h-screen'>
-      {/* Blob morphing - framer motion */}
-      {/* <div className='blob'>
-        <svg
-          viewBox='0 0 200 200'
-          xmlns='http://www.w3.org/2000/svg'
-          xmlnsXlink='http://www.w3.org/1999/xlink'
-          width='100%'
-          height='100%'
-        >
-          <defs>
-            <linearGradient id='gradient' x1='0%' y1='0%' x2='0%' y2='100%'>
-              <stop
-                offset='0%'
-                style={{ stopColor: 'rgb(255,255,255)', stopOpacity: 1 }}
-              ></stop>
-              <stop
-                offset='100%'
-                style={{ stopColor: 'rgb(0,0,0)', stopOpacity: 1 }}
-              ></stop>
-            </linearGradient>
-          </defs>
-          <motion.path
-            id='blob'
-            fill='url(#gradient)'
-            variants={blobVariants}
-            initial='start'
-            animate='end'
-            transition={{
-              duration: 3,
-              repeatType: 'reverse',
-              repeat: Infinity,
-            }}
-          />
-        </svg>
-      </div> */}
+    <section className='flex justify-center items-center bg-[#fafafa] w-full h-fit py-8 space-y-12'>
+      <div className='flex flex-col items-start justify-start gap-y-4'>
+        <div className='flex justify-center items-center flex-col md:flex-row-reverse md:gap-x-8'>
+          {/* Blob morphing */}
+          <div className='blob'></div>
 
-      <h1 className='text-4xl font-bold'>Utvikler</h1>
-      <p className='text-lg font-medium'>
-        Hei, jeg er Sebastian. En engasjert og motivert utvikler basert i
-        Bergen.📍
-      </p>
+          <div className='grid place-content-center gap-y-2 p-2 max-w-[450px]'>
+            <h1 className='text-6xl font-bold'>IT Utvikler</h1>
+            <p className='text-lg font-medium'>
+              Hei, jeg er Sebastian Møldrup. En engasjert og motivert utvikler
+              lokalisert i Bergen.📍
+            </p>
+
+            <div className='flex gap-x-4'>
+              <a
+                href='https://github.com/Sebastianmoldrup'
+                target='_blank'
+                className='hover:scale-110'
+              >
+                <GithubIcon />
+              </a>
+              <a
+                href='mailto:sebastian.moldrup@gmail.com'
+                className='hover:scale-110'
+              >
+                <GmailIcon />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Experience */}
+        <div className='flex flex-col md:flex-row justify-start items-center gap-y-4 px-4 md:gap-x-8 my-8'>
+          <h3 className='border-b-2 md:border-r-2 md:border-b-0 border-[#2d2e32] md:pr-4'>
+            Erfaring
+          </h3>
+          <ul className='flex flex-wrap gap-6 justify-start px-2 max-w-[650px]'>
+            {experience.map((tech, index) => {
+              if (tech === 'shadcnui')
+                return (
+                  <li key={index} className='w-[48px] h-[48px]'>
+                    <Image
+                      src='/logo/shadcnui.webp'
+                      alt='skill-icon'
+                      width={45}
+                      height={45}
+                      className='rounded-xl'
+                    />
+                  </li>
+                );
+              else
+                return (
+                  <li key={index} className=''>
+                    <Image
+                      src={`https://skillicons.dev/icons?i=${tech}`}
+                      alt='skill-icon'
+                      width={45}
+                      height={45}
+                      className=''
+                    />
+                  </li>
+                );
+            })}
+          </ul>
+        </div>
+
+        {/* Exploring */}
+        <div className='flex flex-col md:flex-row w-full justify-start items-center gap-y-4 px-4 md:gap-x-8 my-8'>
+          <h3 className='border-b-2 md:border-r-2 md:border-b-0 border-[#2d2e32] md:pr-2'>
+            Utforsker
+          </h3>
+          <ul className='flex flex-wrap gap-6 justify-start px-2 max-w-[700px]'>
+            {exploring.map((tech, index) => {
+              return (
+                <li key={index}>
+                  <Image
+                    src={`https://skillicons.dev/icons?i=${tech}`}
+                    alt='skill-icon'
+                    width={45}
+                    height={45}
+                  />
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
     </section>
   );
 }
